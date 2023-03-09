@@ -1,0 +1,33 @@
+query getPerson($id : ID) {
+    person(id : $id) {
+        id,
+        name,
+        species {
+            name
+        },
+        homeworld {
+            name
+        }
+        eyeColor,
+        hairColor,
+        skinColor,
+        birthYear,
+        vehicleConnection {
+            vehicles {
+                name
+            }
+        }
+    }
+}
+#query getPerson(id : String) {
+#    person(id : "cGVvcGxlOjI=") {
+#        id,
+#        name,
+#        species {
+#            name
+#        },
+#        homeworld {
+#            name
+#        }
+#    }
+#}
