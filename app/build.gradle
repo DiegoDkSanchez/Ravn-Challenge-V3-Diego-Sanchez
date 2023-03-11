@@ -71,11 +71,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
 
-//    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
-//    // mockito
-//    testImplementation "androidx.arch.core:core-testing:2.1.0"
-//    testImplementation 'org.mockito:mockito-core:4.4.0'
-
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
 
@@ -90,6 +85,10 @@ dependencies {
     implementation("com.apollographql.apollo:apollo-runtime:2.5.9")
     implementation("com.apollographql.apollo:apollo-coroutines-support:2.5.9")
     testImplementation("com.apollographql.apollo3:apollo-mockserver:3.7.3")
+
+    // Room
+    implementation "androidx.room:room-runtime:2.3.0"
+    kapt "androidx.room:room-compiler:2.3.0"
 
     // Hilt
     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"

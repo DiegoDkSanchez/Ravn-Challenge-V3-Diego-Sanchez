@@ -1,6 +1,7 @@
 package com.ravn_challenge.di
 
 import com.apollographql.apollo.ApolloClient
+import com.data.dao.FavoritesDao
 import com.domain.repository.StarWarsRepository
 import com.data.repositoryimpl.StarWarsRepositoryImpl
 import com.domain.usecases.GetAllPeopleUseCase
@@ -15,15 +16,8 @@ import dagger.hilt.components.SingletonComponent
 object AppModule {
 
     @Provides
-    fun provideApolloClient(): ApolloClient {
-        return ApolloClient.builder()
-            .serverUrl("https://swapi-graphql.netlify.app/.netlify/functions/index")
-            .build()
-    }
-
-    @Provides
-    fun provideRepository(apolloClient: ApolloClient): StarWarsRepository {
-        return StarWarsRepositoryImpl(apolloClient)
+    fun provideRepository(apolloClient: ApolloClient, favoritesDao: FavoritesDao): StarWarsRepository {
+        return StarWarsRepositoryImpl(apolloClient, favoritesDao)
     }
 
     @Provides
