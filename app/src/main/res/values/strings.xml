@@ -6,4 +6,6 @@
     <string name="skin_color">Skin Color</string>
     <string name="birth_year">Birth Year</string>
     <string name="general_information">General Information</string>
+    <string name="remove_favorite">Remove Favorite</string>
+    <string name="add_favorite">Add Favorite</string>
 </resources>

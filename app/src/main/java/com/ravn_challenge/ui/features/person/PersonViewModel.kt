@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.data.models.Person
 import com.domain.usecases.GetPersonUseCase
+import com.domain.usecases.UpdateFavoriteUseCase
 import com.ravn_challenge.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PersonViewModel @Inject constructor(
-    private val getPersonUseCase: GetPersonUseCase
+    private val getPersonUseCase: GetPersonUseCase,
+    private val updateFavoriteUseCase: UpdateFavoriteUseCase
 ) : BaseViewModel() {
     val person = MutableLiveData<Person>()
     fun person(): LiveData<Person> = person
@@ -28,6 +30,14 @@ class PersonViewModel @Inject constructor(
             }.onFailure {
                 error.postValue(it.message)
                 loading.postValue(false)
+            }
+        }
+    }
+
+    fun updateFavorite(updated: Person) {
+        viewModelScope.launch(Dispatchers.IO) {
+            updateFavoriteUseCase(updated).onSuccess {
+                person.postValue(it)
             }
         }
     }

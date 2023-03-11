@@ -35,9 +35,9 @@ class PeopleViewModelTest {
     @Test
     fun `get people list when getPeople should success`() {
         testCoroutineRule.runBlockingTest {
-            val result = listOf<GetAllPeopleQuery.Person>()
+            val result = listOf<Person>()
             doReturn(result).`when`(starWarsRepository).getAllPeople()
-            val getAllPeopleUseCase = GetAllPeopleUseCase(starWarsRepository, DomainMapper())
+            val getAllPeopleUseCase = GetAllPeopleUseCase(starWarsRepository)
             val viewModel = PeopleViewModel(getAllPeopleUseCase)
             viewModel.getPeople()
             verify(starWarsRepository).getAllPeople()
@@ -48,12 +48,11 @@ class PeopleViewModelTest {
     @Test
     fun `get loading state when getPeople start`() {
         testCoroutineRule.runBlockingTest {
-            val result = listOf<GetAllPeopleQuery.Person>()
+            val result = listOf<Person>()
             doReturn(result).`when`(starWarsRepository).getAllPeople()
-            val getAllPeopleUseCase = GetAllPeopleUseCase(starWarsRepository, DomainMapper())
+            val getAllPeopleUseCase = GetAllPeopleUseCase(starWarsRepository)
             val viewModel = PeopleViewModel(getAllPeopleUseCase)
             viewModel.getPeople()
-            verify(starWarsRepository).getAllPeople()
             assertEquals(false, viewModel.loading.value)
         }
     }

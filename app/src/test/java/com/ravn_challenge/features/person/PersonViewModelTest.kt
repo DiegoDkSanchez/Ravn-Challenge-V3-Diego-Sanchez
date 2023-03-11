@@ -6,6 +6,7 @@ import com.data.models.Person
 import com.domain.usecases.GetAllPeopleUseCase
 import com.domain.usecases.GetPersonUseCase
 import com.data.utils.DomainMapper
+import com.domain.usecases.UpdateFavoriteUseCase
 import com.ravn_challenge.GetAllPeopleQuery
 import com.ravn_challenge.GetPersonQuery
 import com.ravn_challenge.TestCoroutineRule
@@ -47,25 +48,15 @@ class PersonViewModelTest {
             hairColor = "blond",
             skinColor = "fair",
             birthYear = "19BBY",
-            vehicles = listOf()
-        )
-        val result = GetPersonQuery.Person(
-            id = id,
-            name = "Luke",
-            species = GetPersonQuery.Species(name = "Human"),
-            homeworld = GetPersonQuery.Homeworld(name = "Tatooine"),
-            eyeColor = "blue",
-            hairColor = "blond",
-            skinColor = "fair",
-            birthYear = "19BBY",
-            vehicleConnection = GetPersonQuery.VehicleConnection(vehicles = listOf())
+            vehicles = listOf(),
+            favorite = false
         )
         testCoroutineRule.runBlockingTest {
-            doReturn(result).`when`(starWarsRepository).getPerson(id)
-            val getPersonUseCase = GetPersonUseCase(starWarsRepository, DomainMapper())
-            val viewModel = PersonViewModel(getPersonUseCase)
+            doReturn(person).`when`(starWarsRepository).getPerson(id)
+            val getPersonUseCase = GetPersonUseCase(starWarsRepository)
+            val updateFavoriteUseCase = UpdateFavoriteUseCase(starWarsRepository)
+            val viewModel = PersonViewModel(getPersonUseCase, updateFavoriteUseCase)
             viewModel.getPerson(id)
-            verify(starWarsRepository).getPerson(id)
             assertEquals(person, viewModel.person.value)
         }
     }
@@ -82,25 +73,15 @@ class PersonViewModelTest {
             hairColor = "blond",
             skinColor = "fair",
             birthYear = "19BBY",
-            vehicles = listOf()
-        )
-        val result = GetPersonQuery.Person(
-            id = id,
-            name = "Luke",
-            species = GetPersonQuery.Species(name = "Human"),
-            homeworld = GetPersonQuery.Homeworld(name = "Tatooine"),
-            eyeColor = "blue",
-            hairColor = "blond",
-            skinColor = "fair",
-            birthYear = "19BBY",
-            vehicleConnection = GetPersonQuery.VehicleConnection(vehicles = listOf())
+            vehicles = listOf(),
+            favorite = false
         )
         testCoroutineRule.runBlockingTest {
-            doReturn(result).`when`(starWarsRepository).getPerson(id)
-            val getPersonUseCase = GetPersonUseCase(starWarsRepository, DomainMapper())
-            val viewModel = PersonViewModel(getPersonUseCase)
+            doReturn(person).`when`(starWarsRepository).getPerson(id)
+            val getPersonUseCase = GetPersonUseCase(starWarsRepository)
+            val updateFavoriteUseCase = UpdateFavoriteUseCase(starWarsRepository)
+            val viewModel = PersonViewModel(getPersonUseCase, updateFavoriteUseCase)
             viewModel.getPerson(id)
-            verify(starWarsRepository).getPerson(id)
             assertEquals(false, viewModel.loading.value)
         }
     }

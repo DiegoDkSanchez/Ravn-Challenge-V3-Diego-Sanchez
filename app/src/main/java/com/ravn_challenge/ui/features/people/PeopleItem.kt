@@ -20,7 +20,7 @@ import com.ravn_challenge.R
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun PeopleItem(person: Person, onTap: () -> Unit,) {
+fun PeopleItem(person: Person, onTap: () -> Unit) {
     val name = person.name
     val species = person.species
     val planet = person.planet
@@ -49,6 +49,14 @@ fun PeopleItem(person: Person, onTap: () -> Unit,) {
                         fontFamily = FontFamily(Font(R.font.montserrat_thin)),
                     )
                 }
+                if (person.favorite)
+                    Icon(
+                        imageVector = ImageVector.vectorResource(
+                            R.drawable.ic_favorite_
+                        ),
+                        contentDescription = "Favorite",
+                    )
+                Box(Modifier.width(16.dp))
                 Icon(
                     ImageVector.vectorResource(R.drawable.ic_right),
                     contentDescription = "RightArrow"

@@ -2,10 +2,13 @@ package com.ravn_challenge.ui.features.person
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.data.models.Person
 import com.ravn_challenge.R
@@ -18,7 +21,21 @@ fun PersonGeneralInformation(person: Person) {
         Modifier.padding(start = 20.dp)
     ) {
         Box(Modifier.height(20.dp))
-        Text(stringResource(R.string.general_information), color = BlackMain)
+        Row(
+            Modifier
+                .padding(vertical = 15.dp)
+                .padding(end = 20.dp),
+        ) {
+            Text(stringResource(R.string.general_information), Modifier.weight(1f), color = BlackMain)
+            Icon(
+                imageVector = if (person.favorite) ImageVector.vectorResource(
+                    R.drawable.ic_favorite_
+                ) else ImageVector.vectorResource(
+                    R.drawable.ic_favorite_border
+                ),
+                contentDescription = "Favorite",
+            )
+        }
         Box(Modifier.height(10.dp))
         Row(
             Modifier
