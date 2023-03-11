@@ -1,6 +1,6 @@
 package com.domain.usecases
 
-import com.data.repository.StarWarsRepository
+import com.domain.repository.StarWarsRepository
 import com.domain.models.Person
 import com.domain.utils.DomainMapper
 import javax.inject.Inject

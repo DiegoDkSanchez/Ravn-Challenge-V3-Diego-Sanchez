@@ -1,4 +1,4 @@
-package com.data.repository
+package com.domain.repository
 
 import com.ravn_challenge.GetAllPeopleQuery
 import com.ravn_challenge.GetPersonQuery

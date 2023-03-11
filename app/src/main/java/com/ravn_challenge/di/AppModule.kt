@@ -1,7 +1,7 @@
 package com.ravn_challenge.di
 
 import com.apollographql.apollo.ApolloClient
-import com.data.repository.StarWarsRepository
+import com.domain.repository.StarWarsRepository
 import com.data.repositoryimpl.StarWarsRepositoryImpl
 import com.domain.usecases.GetAllPeopleUseCase
 import com.domain.utils.DomainMapper

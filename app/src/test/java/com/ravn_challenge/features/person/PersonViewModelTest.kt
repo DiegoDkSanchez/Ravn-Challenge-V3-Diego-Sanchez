@@ -1,7 +1,7 @@
 package com.ravn_challenge.features.person
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.data.repository.StarWarsRepository
+import com.domain.repository.StarWarsRepository
 import com.domain.models.Person
 import com.domain.usecases.GetAllPeopleUseCase
 import com.domain.usecases.GetPersonUseCase

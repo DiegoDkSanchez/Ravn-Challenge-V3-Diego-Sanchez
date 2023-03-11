@@ -3,7 +3,7 @@ package com.data.repositoryimpl
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Input
 import com.apollographql.apollo.coroutines.await
-import com.data.repository.StarWarsRepository
+import com.domain.repository.StarWarsRepository
 import com.ravn_challenge.GetAllPeopleQuery
 import com.ravn_challenge.GetPersonQuery
 import javax.inject.Inject
