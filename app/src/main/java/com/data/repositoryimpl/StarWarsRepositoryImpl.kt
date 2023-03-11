@@ -4,6 +4,7 @@ import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Input
 import com.apollographql.apollo.coroutines.await
 import com.data.dao.FavoritesDao
+import com.data.entities.FavoritesEntity
 import com.data.models.Person
 import com.data.utils.DomainMapper
 import com.domain.repository.StarWarsRepository
@@ -16,8 +17,6 @@ class StarWarsRepositoryImpl @Inject constructor(
     private val favoritesDao: FavoritesDao,
     private val domainMapper: DomainMapper,
 ) : StarWarsRepository {
-
-
     override suspend fun getAllPeople(): List<Person> {
         return try {
             val response = apolloClient.query(GetAllPeopleQuery()).await()
@@ -42,6 +41,24 @@ class StarWarsRepositoryImpl @Inject constructor(
             } ?: kotlin.run {
                 throw Error("Failed to Load Data")
             }
+        } catch (error: Exception) {
+            throw Error("Failed to Load Data")
+        }
+    }
+
+    override suspend fun addFavorite(id: String): Person {
+        return try {
+            favoritesDao.insertFavorite(FavoritesEntity(id))
+            getPerson(id)
+        } catch (error: Exception) {
+            throw Error("Failed to Load Data")
+        }
+    }
+
+    override suspend fun removeFavorite(id: String): Person {
+        return try {
+            favoritesDao.deleteFavorite(FavoritesEntity(id))
+            getPerson(id)
         } catch (error: Exception) {
             throw Error("Failed to Load Data")
         }

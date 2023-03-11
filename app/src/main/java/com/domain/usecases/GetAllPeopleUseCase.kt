@@ -2,7 +2,6 @@ package com.domain.usecases
 
 import com.domain.repository.StarWarsRepository
 import com.data.models.Person
-import com.data.utils.DomainMapper
 import javax.inject.Inject
 
 class GetAllPeopleUseCase @Inject constructor(
