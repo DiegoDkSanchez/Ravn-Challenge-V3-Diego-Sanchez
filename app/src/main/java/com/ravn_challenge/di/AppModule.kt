@@ -2,10 +2,10 @@ package com.ravn_challenge.di
 
 import com.apollographql.apollo.ApolloClient
 import com.data.dao.FavoritesDao
-import com.domain.repository.StarWarsRepository
 import com.data.repositoryimpl.StarWarsRepositoryImpl
+import com.data.utils.DomainMapper
+import com.domain.repository.StarWarsRepository
 import com.domain.usecases.GetAllPeopleUseCase
-import com.domain.utils.DomainMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,8 +16,12 @@ import dagger.hilt.components.SingletonComponent
 object AppModule {
 
     @Provides
-    fun provideRepository(apolloClient: ApolloClient, favoritesDao: FavoritesDao): StarWarsRepository {
-        return StarWarsRepositoryImpl(apolloClient, favoritesDao)
+    fun provideRepository(
+        apolloClient: ApolloClient,
+        favoritesDao: FavoritesDao,
+        domainMapper: DomainMapper
+    ): StarWarsRepository {
+        return StarWarsRepositoryImpl(apolloClient, favoritesDao, domainMapper)
     }
 
     @Provides
@@ -27,9 +31,8 @@ object AppModule {
 
     @Provides
     fun provideGetAllPeopleUseCase(
-        starWarsRepository: StarWarsRepository,
-        domainMapper: DomainMapper,
+        starWarsRepository: StarWarsRepository
     ): GetAllPeopleUseCase {
-        return GetAllPeopleUseCase(starWarsRepository, domainMapper)
+        return GetAllPeopleUseCase(starWarsRepository)
     }
 }

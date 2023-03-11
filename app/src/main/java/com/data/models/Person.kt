@@ -1,4 +1,4 @@
-package com.domain.models
+package com.data.models
 
 data class Person(
     val id: String,
@@ -9,5 +9,6 @@ data class Person(
     val hairColor: String,
     val skinColor: String,
     val birthYear: String,
-    val vehicles: List<Vehicle>
+    val vehicles: List<Vehicle>,
+    val favorite: Boolean,
 )

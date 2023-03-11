@@ -2,9 +2,9 @@ package com.ravn_challenge.features.people
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.domain.repository.StarWarsRepository
-import com.domain.models.Person
+import com.data.models.Person
 import com.domain.usecases.GetAllPeopleUseCase
-import com.domain.utils.DomainMapper
+import com.data.utils.DomainMapper
 import com.ravn_challenge.GetAllPeopleQuery
 import com.ravn_challenge.TestCoroutineRule
 import com.ravn_challenge.ui.features.people.PeopleViewModel

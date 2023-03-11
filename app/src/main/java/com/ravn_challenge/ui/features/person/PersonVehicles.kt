@@ -11,7 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.domain.models.Vehicle
+import com.data.models.Vehicle
 import com.ravn_challenge.ui.theme.BlackMain
 import com.ravn_challenge.ui.theme.Gray
 

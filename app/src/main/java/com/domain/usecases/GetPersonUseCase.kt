@@ -1,18 +1,16 @@
 package com.domain.usecases
 
 import com.domain.repository.StarWarsRepository
-import com.domain.models.Person
-import com.domain.utils.DomainMapper
+import com.data.models.Person
+import com.data.utils.DomainMapper
 import javax.inject.Inject
 
 class GetPersonUseCase @Inject constructor(
     private val startWarsRepository: StarWarsRepository,
-    private val mapper: DomainMapper,
 ) {
     suspend operator fun invoke(id: String): Result<Person> {
         return try {
-            val queryPerson = startWarsRepository.getPerson(id)
-            Result.success(mapper.toPersonComplete(queryPerson))
+            Result.success(startWarsRepository.getPerson(id))
         } catch (e: Error) {
             Result.failure(Error("Failed to Load Data"))
         }
